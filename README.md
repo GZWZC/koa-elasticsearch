@@ -51,3 +51,35 @@ window:
 	    }
     });
 
+五、Elasticsearch api
+
+插入：
+
+    client.create({
+    	index: 'index1',
+    	type: 'type1',
+    	id: '1',
+    	body: {
+    		title: 'title1',
+    		data: []
+    	}
+    }, function (error, response) {
+    	if (error) {
+    		console.log(error);
+    	} else {
+    		console.log('insert success');
+    	}
+    });
+    
+搜索：
+
+    client.search({}).then(function (body) {
+        // hits里就能看到你刚刚插入的文档数据
+    	var hits = body.hits.hits;
+    	console.log(body)
+    	console.log(hits)
+    }, function (error) {
+    	console.trace(error.message);
+    });
+    
+    
